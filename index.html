@@ -120,6 +120,63 @@
         <li>📈 Embudos de Venta Digitales</li>
     </ul>
 </div>
+        <div style="max-width: 400px; margin: 0 auto 40px auto; text-align: left;">
+    <form id="contactForm">
+        <div style="margin-bottom: 10px;">
+            <input type="text" id="nombre" placeholder="Tu Nombre" required 
+            style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; box-sizing: border-box;">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <input type="tel" id="telefono" placeholder="Tu WhatsApp (10 dígitos)" required 
+            style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; box-sizing: border-box;">
+        </div>
+
+        <button type="submit" id="btnEnviar" 
+        style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+            SOLICITAR ASESORÍA
+        </button>
+        <p id="mensajeExito" style="color: #4CAF50; display: none; text-align: center; margin-top: 10px;">¡Recibido! Te contactaremos pronto.</p>
+    </form>
+</div>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // --- AQUÍ PEGA TU URL DE N8N ---
+        const webhookUrl = 'https://n8n-n8n.pye1l7.easypanel.host/webhook-test/contacto'; 
+        // -------------------------------
+
+        const btn = document.getElementById('btnEnviar');
+        const mensaje = document.getElementById('mensajeExito');
+        
+        btn.innerHTML = "Enviando...";
+        btn.disabled = true;
+
+        const datos = {
+            nombre: document.getElementById('nombre').value,
+            telefono: document.getElementById('telefono').value,
+            fecha: new Date().toLocaleString()
+        };
+
+        fetch(webhookUrl, {
+            method: 'POST',
+            body: JSON.stringify(datos),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+            btn.style.display = 'none'; // Oculta el botón
+            mensaje.style.display = 'block'; // Muestra mensaje de éxito
+            // Aquí podrías redirigir a una página de "Gracias" si quisieras
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            btn.innerHTML = "Error al enviar";
+            btn.disabled = false;
+        });
+    });
+</script>
 
         <a href="https://wa.me/527751193461?text=Hola,%20me%20interesa%20una%20estrategia%20digital%20para%20mi%20negocio" class="btn-whatsapp" target="_blank">
             Contáctanos por WhatsApp
@@ -133,6 +190,7 @@
 </body>
 
 </html>
+
 
 
 
