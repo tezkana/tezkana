@@ -4,194 +4,344 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tezkana Media | Estrategia & Automatización</title>
-    <meta name="description" content="Agencia de automatización con IA, Chatbots y estrategias digitales en Coatepec y Xalapa. Impulsa tu negocio con tecnología n8n y Tezkana Media.">
-<meta name="keywords" content="automatización, inteligencia artificial, n8n, chatbots, marketing digital, coatepec, xalapa, agentes ia">
-<meta name="author" content="Miguel - Tezkana Media">
-<meta property="og:title" content="Tezkana Media | Estrategia & Automatización">
-<meta property="og:description" content="Construyendo el futuro de tu negocio con Inteligencia Artificial.">
-<meta property="og:image" content="logo.png">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos Generales - Tema Obsidiana */
-        body {
+        /* --- ESTILOS GENERALES (Dark Mode) --- */
+        :root {
+            --primary-color: #D32F2F; /* Rojo estilo lava/Tezkana */
+            --bg-color: #0a0a0a;      /* Fondo casi negro */
+            --card-bg: #161616;       /* Fondo de tarjetas */
+            --text-color: #ffffff;
+            --text-secondary: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #0a0a0a; /* Negro casi puro */
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(10, 10, 10, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo img {
+            height: 40px; /* Ajusta según tu logo.png */
+            vertical-align: middle;
+        }
+        
+        .logo span {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-left: 10px;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a:hover { color: var(--primary-color); }
+        
+        /* Botón de acción en el menú */
+        .btn-nav {
+            border: 1px solid var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+        .btn-nav:hover { background-color: var(--primary-color); }
+
+        /* --- SECCIONES COMUNES --- */
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        h2 span { color: var(--primary-color); }
+
+        /* --- HERO (BIENVENIDA) --- */
+        .hero {
+            height: 90vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #222 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .btn-main {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
+        }
+        .btn-main:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        /* --- SERVICIOS & COSTOS (TARJETAS) --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .price { font-size: 2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 20px; display: block;}
+        .card ul { text-align: left; margin-bottom: 30px; color: var(--text-secondary); }
+        .card li { margin-bottom: 10px; display: flex; align-items: center; }
+        .card li::before { content: "✓"; color: var(--primary-color); margin-right: 10px; }
+
+        /* --- PORTAFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project {
+            background-color: var(--card-bg);
+            height: 250px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .project-content {
+            padding: 20px;
             text-align: center;
         }
 
-        /* Contenedor Principal */
-        .container {
-            max-width: 800px;
-            padding: 20px;
+        /* --- CONTACTO --- */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
         }
-
-        /* Estilo del Logo (Si no subes imagen, usa este texto) */
-        .logo-text {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin: 0;
-            line-height: 1;
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--text-secondary); }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 4px;
         }
         
-        .logo-subtitle {
-            font-size: 1.2rem;
-            color: #888; /* Gris elegante */
-            letter-spacing: 8px; /* Estilo 'MEDIA' separado */
-            margin-top: 5px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            display: block;
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #333;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        /* Acento de color (La Punta Roja) */
-        .highlight {
-            color: #ff0000; /* Rojo Intenso */
-        }
-
-        /* Texto Principal */
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 10px;
-            color: #e0e0e0;
-        }
-
-        p {
-            color: #888;
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-
-        /* Botón de WhatsApp */
-        .btn-whatsapp {
-            background-color: #ff0000; /* Fondo Rojo */
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px; /* Bordes ligeramente redondeados */
-            font-size: 1.1rem;
-            transition: transform 0.2s, background-color 0.2s;
-            display: inline-block;
-            border: 1px solid #ff0000;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #cc0000; /* Rojo más oscuro al pasar mouse */
-            transform: scale(1.05); /* Efecto de crecer un poco */
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 60px;
-            font-size: 0.8rem;
-            color: #444;
-        }
-
-        /* Ajustes para Celular */
-        @media (max-width: 600px) {
-            .logo-text { font-size: 2.5rem; }
-            .logo-subtitle { letter-spacing: 4px; font-size: 1rem; }
+        /* Responsive Móvil */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* En una versión más avanzada podemos hacer menú hamburguesa */
+            .logo span { display: block; }
+            nav { flex-direction: column; gap: 10px;}
+            .nav-links-mobile { display: flex; gap: 15px; font-size: 0.9rem; } /* Parche simple para móvil */
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-       <div class="mb-8">
-    <img src="logo.png" alt="Tezkana Media Logo" style="max-width: 650px; height: auto; display: block; margin: 0 auto;">
-</div>
-
-        <h2>Estrategia & Automatización Digital</h2>
-        <p>Estamos construyendo el futuro de tu negocio. <br>Sitio web próximamente.</p>
-        <div style="margin-top: 25px; margin-bottom: 35px;">
-    <ul style="list-style: none; padding: 0; color: #e0e0e0; font-size: 1.1rem; line-height: 1.8;">
-        <li>🤖 Chatbots & Agentes IA</li>
-        <li>⚡ Automatización de Procesos </li>
-        <li>📈 Embudos de Venta Digitales</li>
-    </ul>
-</div>
-        <div style="max-width: 400px; margin: 0 auto 40px auto; text-align: left;">
-    <form id="contactForm">
-        <div style="margin-bottom: 10px;">
-            <input type="text" id="nombre" placeholder="Tu Nombre" required 
-            style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; box-sizing: border-box;">
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Tezkana Logo"> 
+            <span>TEZKANA MEDIA</span>
         </div>
-        
-        <div style="margin-bottom: 15px;">
-            <input type="tel" id="telefono" placeholder="Tu WhatsApp (10 dígitos)" required 
-            style="width: 100%; padding: 12px; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 5px; box-sizing: border-box;">
+        <div class="nav-links nav-links-mobile">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#portafolio">Portafolio</a>
+            <a href="#contacto" class="btn-nav">Contacto</a>
         </div>
+    </nav>
 
-        <button type="submit" id="btnEnviar" 
-        style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s;">
-            SOLICITAR ASESORÍA
-        </button>
-        <p id="mensajeExito" style="color: #4CAF50; display: none; text-align: center; margin-top: 10px;">¡Recibido! Te contactaremos pronto.</p>
-    </form>
-</div>
+    <header id="inicio" class="hero">
+        <h1>Estrategia & <br> <span style="color:var(--primary-color)">Automatización Digital</span></h1>
+        <p>Construye el futuro de tu negocio. Implementamos Chatbots con IA, embudos de venta y automatización de procesos para que tú te enfoques en crecer.</p>
+        <a href="#servicios" class="btn-main">Ver Planes y Costos</a>
+    </header>
 
-<script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // --- AQUÍ PEGA TU URL DE N8N ---
-        const webhookUrl = 'https://n8n-n8n.pye1l7.easypanel.host/webhook/contacto'; 
-        // -------------------------------
-
-        const btn = document.getElementById('btnEnviar');
-        const mensaje = document.getElementById('mensajeExito');
-        
-        btn.innerHTML = "Enviando...";
-        btn.disabled = true;
-
-        const datos = {
-            nombre: document.getElementById('nombre').value,
-            telefono: document.getElementById('telefono').value,
-            fecha: new Date().toLocaleString()
-        };
-
-        fetch(webhookUrl, {
-            method: 'POST',
-            body: JSON.stringify(datos),
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => {
-            btn.style.display = 'none'; // Oculta el botón
-            mensaje.style.display = 'block'; // Muestra mensaje de éxito
-            // Aquí podrías redirigir a una página de "Gracias" si quisieras
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            btn.innerHTML = "Error al enviar";
-            btn.disabled = false;
-        });
-    });
-</script>
-
-        <a href="https://wa.me/527751193461?text=Hola,%20me%20interesa%20una%20estrategia%20digital%20para%20mi%20negocio" class="btn-whatsapp" target="_blank">
-            Contáctanos por WhatsApp
-        </a>
-
-        <div class="footer">
-            &copy; 2025 Tezkana Media. Coatepec, Ver.
+    <section id="servicios">
+        <h2>Nuestros <span>Planes</span></h2>
+        <div class="pricing-grid">
+            <div class="card">
+                <h3>Starter</h3>
+                <span class="price">$3,500 MXN</span>
+                <p style="font-size: 0.9rem; margin-bottom:15px; color:#888;">Pago único + mantenimiento opcional</p>
+                <ul>
+                    <li>Chatbot de respuestas rápidas</li>
+                    <li>Botón flotante de WhatsApp</li>
+                    <li>Diseño de Landing Page básica</li>
+                    <li>Integración con Facebook</li>
+                </ul>
+                <a href="#contacto" class="btn-nav">Elegir Plan</a>
+            </div>
+            <div class="card" style="border-color: var(--primary-color);">
+                <h3 style="color:var(--primary-color)">Growth (PyME)</h3>
+                <span class="price">$8,500 MXN</span>
+                <p style="font-size: 0.9rem; margin-bottom:15px; color:#888;">Pago único / A meses</p>
+                <ul>
+                    <li>Agente IA entrenado (GPT)</li>
+                    <li>Automatización de correos</li>
+                    <li>Conexión básica a CRM</li>
+                    <li>Soporte prioritario</li>
+                </ul>
+                <a href="#contacto" class="btn-main">Elegir Plan</a>
+            </div>
+            <div class="card">
+                <h3>Enterprise</h3>
+                <span class="price">A Medida</span>
+                <p style="font-size: 0.9rem; margin-bottom:15px; color:#888;">Para corporativos</p>
+                <ul>
+                    <li>Consultoría de procesos completa</li>
+                    <li>Integraciones complejas (ERP/API)</li>
+                    <li>Dashboards personalizados</li>
+                    <li>Entrenamiento de equipo</li>
+                </ul>
+                <a href="#contacto" class="btn-nav">Cotizar</a>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="portafolio">
+        <h2>Casos de <span>Éxito</span></h2>
+        <div class="portfolio-grid">
+            <div class="project">
+                <div class="project-content">
+                    <h3>Inmobiliaria Xalapa</h3>
+                    <p style="color:#aaa; font-size:0.9rem;">Automatización de citas y filtrado de clientes por WhatsApp.</p>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-content">
+                    <h3>E-commerce Café</h3>
+                    <p style="color:#aaa; font-size:0.9rem;">Recuperación de carritos abandonados con IA.</p>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-content">
+                    <h3>Consultorio Dental</h3>
+                    <p style="color:#aaa; font-size:0.9rem;">Sistema de agendamiento y recordatorios automáticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Hablemos de tu <span>Proyecto</span></h2>
+        <div class="contact-container">
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp</label>
+                        <input type="tel" placeholder="10 dígitos">
+                    </div>
+                    <div class="form-group">
+                        <label>Servicio de interés</label>
+                        <select>
+                            <option>Chatbots & IA</option>
+                            <option>Automatización de Procesos</option>
+                            <option>Desarrollo Web</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-main" style="width:100%; border:none; cursor:pointer;">Solicitar Asesoría</button>
+                </form>
+            </div>
+            
+            <div style="flex:1; min-width:300px; display:flex; flex-direction:column; justify-content:center;">
+                <h3>¿Listo para escalar?</h3>
+                <p style="color:#aaa; margin-bottom:20px;">Agenda una llamada de 15 minutos para ver si podemos ayudarte.</p>
+                <a href="https://wa.me/521XXXXXXXXXX" target="_blank" style="background:#25D366; color:white; padding:15px; border-radius:5px; text-align:center; font-weight:bold;">
+                    Enviar WhatsApp Directo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Tezkana Media - Coatepec, Veracruz.</p>
+    </footer>
 
 </body>
-
 </html>
-
-
 
 
 
