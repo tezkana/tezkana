@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,12 @@
     <style>
         /* --- ESTILOS GENERALES (Dark Mode) --- */
         :root {
-            --primary-color: #D32F2F; /* Rojo estilo lava/Tezkana */
-            --bg-color: #0a0a0a;      /* Fondo casi negro */
-            --card-bg: #161616;       /* Fondo de tarjetas */
+            --primary-color: #D32F2F;
+            /* Rojo estilo lava/Tezkana */
+            --bg-color: #0a0a0a;
+            /* Fondo casi negro */
+            --card-bg: #161616;
+            /* Fondo de tarjetas */
             --text-color: #ffffff;
             --text-secondary: #aaaaaa;
         }
@@ -28,8 +32,15 @@
             line-height: 1.6;
         }
 
-        a { text-decoration: none; color: white; transition: 0.3s; }
-        ul { list-style: none; }
+        a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
 
         /* --- BARRA DE NAVEGACIÓN --- */
         nav {
@@ -45,10 +56,11 @@
         }
 
         .logo img {
-            height: 40px; /* Ajusta según tu logo.png */
+            height: 40px;
+            /* Ajusta según tu logo.png */
             vertical-align: middle;
         }
-        
+
         .logo span {
             font-weight: 700;
             font-size: 1.2rem;
@@ -57,16 +69,25 @@
             letter-spacing: 1px;
         }
 
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a:hover { color: var(--primary-color); }
-        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
         /* Botón de acción en el menú */
         .btn-nav {
             border: 1px solid var(--primary-color);
             padding: 8px 16px;
             border-radius: 4px;
         }
-        .btn-nav:hover { background-color: var(--primary-color); }
+
+        .btn-nav:hover {
+            background-color: var(--primary-color);
+        }
 
         /* --- SECCIONES COMUNES --- */
         section {
@@ -82,8 +103,10 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
-        h2 span { color: var(--primary-color); }
+
+        h2 span {
+            color: var(--primary-color);
+        }
 
         /* --- HERO (BIENVENIDA) --- */
         .hero {
@@ -93,13 +116,22 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #222 0%, #0a0a0a 100%);
+            /* Red Glow Background */
+            background: radial-gradient(circle, rgba(211, 47, 47, 0.15) 0%, #0a0a0a 70%);
+            padding: 100px 5%;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            /* Gradient Text Effect */
+            background: linear-gradient(135deg, #ffffff 30%, #D32F2F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero p {
@@ -119,6 +151,7 @@
             text-transform: uppercase;
             box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
         }
+
         .btn-main:hover {
             background-color: #b71c1c;
             transform: translateY(-2px);
@@ -140,13 +173,41 @@
             transition: 0.3s;
         }
 
-        .card:hover { border-color: var(--primary-color); transform: translateY(-5px); }
+        .card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
 
-        .card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .price { font-size: 2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 20px; display: block;}
-        .card ul { text-align: left; margin-bottom: 30px; color: var(--text-secondary); }
-        .card li { margin-bottom: 10px; display: flex; align-items: center; }
-        .card li::before { content: "✓"; color: var(--primary-color); margin-right: 10px; }
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card ul {
+            text-align: left;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card li::before {
+            content: "✓";
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
 
         /* --- PORTAFOLIO --- */
         .portfolio-grid {
@@ -154,6 +215,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
+
         .project {
             background-color: var(--card-bg);
             height: 250px;
@@ -165,6 +227,7 @@
             overflow: hidden;
             border: 1px solid #333;
         }
+
         .project-content {
             padding: 20px;
             text-align: center;
@@ -177,6 +240,7 @@
             gap: 40px;
             justify-content: center;
         }
+
         .contact-form {
             flex: 1;
             min-width: 300px;
@@ -184,9 +248,20 @@
             padding: 30px;
             border-radius: 10px;
         }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 5px; color: var(--text-secondary); }
-        .form-group input, .form-group select, .form-group textarea {
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 10px;
             background: #0a0a0a;
@@ -194,7 +269,7 @@
             color: white;
             border-radius: 4px;
         }
-        
+
         footer {
             text-align: center;
             padding: 40px;
@@ -205,19 +280,40 @@
 
         /* Responsive Móvil */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* En una versión más avanzada podemos hacer menú hamburguesa */
-            .logo span { display: block; }
-            nav { flex-direction: column; gap: 10px;}
-            .nav-links-mobile { display: flex; gap: 15px; font-size: 0.9rem; } /* Parche simple para móvil */
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* En una versión más avanzada podemos hacer menú hamburguesa */
+            .logo span {
+                display: block;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links-mobile {
+                display: flex;
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            /* Parche simple para móvil */
         }
     </style>
 </head>
+
 <body>
 
     <nav>
         <div class="logo">
-            <img src="logo.png" alt="Tezkana Logo"> 
+            <img src="logo.png" alt="Tezkana Logo">
             <span>TEZKANA MEDIA</span>
         </div>
         <div class="nav-links nav-links-mobile">
@@ -229,8 +325,9 @@
     </nav>
 
     <header id="inicio" class="hero">
-        <h1>Estrategia & <br> <span style="color:var(--primary-color)">Automatización Digital</span></h1>
-        <p>Construye el futuro de tu negocio. Implementamos Chatbots con IA, embudos de venta y automatización de procesos para que tú te enfoques en crecer.</p>
+        <h1>Estrategia & <br> Automatización Digital</h1>
+        <p>Construye el futuro de tu negocio. Implementamos Chatbots con IA, embudos de venta y automatización de
+            procesos para que tú te enfoques en crecer.</p>
         <a href="#servicios" class="btn-main">Ver Planes y Costos</a>
     </header>
 
@@ -282,7 +379,8 @@
             <div class="project">
                 <div class="project-content">
                     <h3>Inmobiliaria Xalapa</h3>
-                    <p style="color:#aaa; font-size:0.9rem;">Automatización de citas y filtrado de clientes por WhatsApp.</p>
+                    <p style="color:#aaa; font-size:0.9rem;">Automatización de citas y filtrado de clientes por
+                        WhatsApp.</p>
                 </div>
             </div>
             <div class="project">
@@ -322,14 +420,17 @@
                             <option>Otro</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-main" style="width:100%; border:none; cursor:pointer;">Solicitar Asesoría</button>
+                    <button type="submit" class="btn-main" style="width:100%; border:none; cursor:pointer;">Solicitar
+                        Asesoría</button>
                 </form>
             </div>
-            
+
             <div style="flex:1; min-width:300px; display:flex; flex-direction:column; justify-content:center;">
                 <h3>¿Listo para escalar?</h3>
-                <p style="color:#aaa; margin-bottom:20px;">Agenda una llamada de 15 minutos para ver si podemos ayudarte.</p>
-                <a href="https://wa.me/521XXXXXXXXXX" target="_blank" style="background:#25D366; color:white; padding:15px; border-radius:5px; text-align:center; font-weight:bold;">
+                <p style="color:#aaa; margin-bottom:20px;">Agenda una llamada de 15 minutos para ver si podemos
+                    ayudarte.</p>
+                <a href="https://wa.me/521XXXXXXXXXX" target="_blank"
+                    style="background:#25D366; color:white; padding:15px; border-radius:5px; text-align:center; font-weight:bold;">
                     Enviar WhatsApp Directo
                 </a>
             </div>
@@ -341,10 +442,5 @@
     </footer>
 
 </body>
+
 </html>
-
-
-
-
-
-
