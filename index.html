@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tezkana Media | Convierte Extraños en Clientes Mientras Duermes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Playfair+Display:ital,wght@1,400&family=Fira+Code:wght@400&family=Orbitron:wght@500&display=swap"
+        rel="stylesheet">
     <style>
         /* --- ESTILOS GENERALES (Dark Mode) --- */
         :root {
@@ -110,35 +112,133 @@
 
         /* --- HERO (BIENVENIDA) --- */
         .hero {
-            height: 90vh;
+            min-height: 100vh;
+            /* Allow for more content */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             /* Red Glow Background */
-            background: radial-gradient(circle, rgba(211, 47, 47, 0.15) 0%, #0a0a0a 70%);
-            padding: 100px 5%;
+            background: radial-gradient(circle at center top, rgba(211, 47, 47, 0.2) 0%, #0a0a0a 60%);
+            padding: 120px 5% 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- HERO TEXTS --- */
+        .hero-header {
+            margin-bottom: 60px;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 40px;
             line-height: 1.1;
-            /* Gradient Text Effect */
-            background: linear-gradient(135deg, #ffffff 30%, #D32F2F 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
+            margin-bottom: 20px;
+            color: var(--text-color);
         }
 
         .hero p {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
+            margin: 0 auto;
+        }
+
+        /* --- GIANT MIXED TYPOGRAPHY --- */
+        .hero-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 40px;
+            margin-bottom: 80px;
+            width: 100%;
+        }
+
+        .big-word {
+            font-size: clamp(2.5rem, 5vw, 6rem);
+            /* Responsive giant text */
+            line-height: 1;
+            /* color: rgba(255, 255, 255, 0.9); */
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        .big-word:hover {
+            transform: scale(1.05);
+            color: var(--primary-color);
+        }
+
+        /* Font Families */
+        .font-design {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .font-dev {
+            font-family: 'Fira Code', monospace;
+            font-weight: 400;
+            letter-spacing: -2px;
+        }
+
+        .font-mkt {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .font-media {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+
+        /* --- DETAILS GRID --- */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .detail-card {
+            background: rgba(22, 22, 22, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid #333;
+            padding: 30px;
+            text-align: left;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .detail-card:hover {
+            background: rgba(30, 30, 30, 0.9);
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .detail-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            /* Keep titles consistent/clean */
+            font-weight: 700;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .detail-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.5;
+            margin: 0;
+            max-width: 100%;
+            /* Reset override */
         }
 
         .btn-main {
@@ -325,9 +425,49 @@
     </nav>
 
     <header id="inicio" class="hero">
-        <h1>Convierte Extraños <br> En Clientes</h1>
-        <p>Diseñamos el ecosistema digital que vende por ti, para que tú solo te enfoques en hacer lo que amas.</p>
-        <a href="#servicios" class="btn-main">Ver Planes y Costos</a>
+
+        <div class="hero-header">
+            <h1>AGENCIA DIGITAL <br> CREATIVA</h1>
+            <p>Fusionamos arte y tecnología para construir marcas inolvidables.</p>
+        </div>
+
+        <div class="hero-keywords">
+            <span class="big-word font-design">Diseño</span>
+            <span class="big-word font-dev">Desarrollo</span>
+            <span class="big-word font-mkt">Marketing</span>
+            <span class="big-word font-media">Media & IA</span>
+        </div>
+
+        <div class="details-grid">
+            <!-- Card 1: Diseño -->
+            <div class="detail-card">
+                <h3>El rostro de tu negocio</h3>
+                <p>Creamos identidades visuales memorables que transmiten confianza. Branding, Logos y Diseño Gráfico.
+                </p>
+            </div>
+
+            <!-- Card 2: Desarrollo -->
+            <div class="detail-card">
+                <h3>Tu local en internet</h3>
+                <p>Construimos tu presencia digital 24/7. Sitios Web, Landing Pages y Catálogos Digitales optimizados.
+                </p>
+            </div>
+
+            <!-- Card 3: Marketing -->
+            <div class="detail-card">
+                <h3>Estrategias que venden</h3>
+                <p>No solo publicamos bonito, atraemos clientes reales. Gestión de Redes, Facebook Ads y Embudos de
+                    venta.</p>
+            </div>
+
+            <!-- Card 4: Media & IA -->
+            <div class="detail-card">
+                <h3>Contenido del futuro</h3>
+                <p>Producción audiovisual innovadora. Video, Renders 3D y generación de contenido con Inteligencia
+                    Artificial.</p>
+            </div>
+        </div>
+
     </header>
 
     <section id="servicios">
