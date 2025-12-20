@@ -148,13 +148,13 @@
 
         /* --- GIANT MIXED TYPOGRAPHY --- */
         .hero-keywords {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px 40px;
-            margin-bottom: 80px;
-            width: 100%;
-        }
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Esto hace el 2x2 */
+  gap: 20px 40px;
+  margin-bottom: 80px;
+  width: 100%;
+  text-align: center; /* Para centrar el texto en su caja */
+}
 
         .big-word {
             font-size: clamp(2.5rem, 5vw, 6rem);
@@ -427,8 +427,8 @@
     <header id="inicio" class="hero">
 
         <div class="hero-header">
-            <h1>AGENCIA DIGITAL <br> CREATIVA</h1>
-            <p>Fusionamos arte y tecnología para construir marcas inolvidables.</p>
+            <h1>Convierte Extraños <br> En Tus Clientes</h1>
+            <p>Diseñamos el ecosistema digital que vende por ti, para que tú solo te enfoques en hacer lo que amas.</p>
         </div>
 
         <div class="hero-keywords">
@@ -581,6 +581,7 @@
     </footer>
 
 </body>
+
 
 
 </html>
