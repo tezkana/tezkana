@@ -304,7 +304,7 @@
             align-items: center;
             text-align: center;
             background: transparent;
-            padding: 140px 6% 80px;
+            padding: 100px 6%;
             position: relative;
             overflow: hidden;
         }
@@ -357,24 +357,35 @@
 
         /* ===== HERO KEYWORDS ===== */
         .hero-keywords {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px 48px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 60px;
             margin-bottom: 72px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1200px;
             text-align: center;
             align-items: center;
-            justify-items: center;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px 40px;
+            width: 100%;
         }
 
         .big-word {
-            font-size: clamp(2.5rem, 5vw, 5.5rem);
+            font-size: clamp(2.5rem, 4.5vw, 5rem);
             line-height: 1;
             transition: var(--transition);
             cursor: default;
             color: var(--text);
             opacity: 0.85;
+            white-space: nowrap;
+            flex: 0 1 auto;
         }
 
         .big-word:hover {
@@ -888,12 +899,18 @@
             }
 
             .hero-keywords {
-                grid-template-columns: 1fr;
                 gap: 14px;
+            }
+
+            .keyword-row {
+                flex-direction: column;
+                gap: 14px;
+                text-align: center;
             }
 
             .big-word {
                 font-size: clamp(2rem, 8vw, 3rem);
+                text-align: center;
             }
 
             .logo span {
@@ -1034,10 +1051,14 @@
         </div>
 
         <div class="hero-keywords reveal">
-            <span class="big-word font-design">Diseño</span>
-            <span class="big-word font-dev">Desarrollo</span>
-            <span class="big-word font-mkt">Marketing</span>
-            <span class="big-word font-media">Media & IA</span>
+            <div class="keyword-row">
+                <span class="big-word font-design">Diseño</span>
+                <span class="big-word font-dev">Desarrollo</span>
+            </div>
+            <div class="keyword-row">
+                <span class="big-word font-mkt">Marketing</span>
+                <span class="big-word font-media">Media & IA</span>
+            </div>
         </div>
 
         <div class="details-grid">
