@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso de Privacidad | Tezkana Media</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Aviso de Privacidad de Tezkana Media. Conoce cómo recopilamos, usamos y protegemos tus datos personales.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://tezkana.com/aviso-privacidad">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #C62828;
+            --primary-light: #EF5350;
+            --primary-dark: #8E0000;
+            --bg: #f0f4f8;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-hover: rgba(255, 255, 255, 0.88);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-border-hover: rgba(211, 47, 47, 0.3);
+            --text: #1a1a2e;
+            --text-muted: #4a5568;
+            --text-light: #718096;
+            --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.10);
+            --shadow-glow: 0 0 20px rgba(198, 40, 40, 0.15);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #nebula-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 6%;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 38px;
+        }
+
+        .logo span {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 2.5px;
+            color: var(--text);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .nav-links a:not(.btn-nav)::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width var(--transition);
+        }
+
+        .nav-links a:not(.btn-nav):hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .btn-nav {
+            border: 1.5px solid var(--primary);
+            padding: 12px 24px;
+            min-height: 44px;
+            border-radius: var(--radius-sm);
+            color: var(--primary) !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary);
+            color: #fff !important;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+            transition: var(--transition);
+        }
+
+        .hamburger::before {
+            top: -7px;
+        }
+
+        .hamburger::after {
+            top: 7px;
+        }
+
+        .menu-toggle.active .hamburger {
+            background-color: transparent;
+        }
+
+        .menu-toggle.active .hamburger::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .menu-toggle.active .hamburger::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 6% 60px;
+            position: relative;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding: 6px 18px;
+            border: 1.5px solid rgba(198, 40, 40, 0.25);
+            border-radius: 50px;
+            background: rgba(198, 40, 40, 0.05);
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text);
+            letter-spacing: -1px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ===== POLICY CONTENT ===== */
+        .policy-section {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 6% 100px;
+        }
+
+        .policy-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 48px 44px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .policy-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 40px 0 12px;
+            padding-left: 14px;
+            border-left: 3px solid var(--primary);
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .policy-card h2:first-child {
+            margin-top: 0;
+        }
+
+        .policy-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .policy-card ul {
+            list-style: none;
+            margin: 8px 0 16px;
+            padding: 0;
+        }
+
+        .policy-card li {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 8px;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        .policy-card li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: 700;
+            position: absolute;
+            left: 6px;
+            top: 0;
+        }
+
+        .policy-card strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .policy-card a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .policy-meta {
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.82rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 48px 6%;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            color: var(--text-light);
+            font-size: 0.85rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-social {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-social a {
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.2) translateY(-2px);
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 14px 5%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.97);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+                transition: right 0.35s ease;
+                border-left: 1px solid rgba(0, 0, 0, 0.06);
+                box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                color: var(--text);
+            }
+
+            .hero {
+                padding: 120px 5% 40px;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.8rem, 7vw, 2.6rem);
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .policy-card {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .policy-card {
+                padding: 24px 18px;
+            }
+
+            .policy-card h2 {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="nebula-bg"></canvas>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="Tezkana Logo">
+            <span>TEZKANA MEDIA</span>
+        </a>
+        <button class="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="redes-sociales.html">Redes Sociales</a>
+            <a href="index.html#portafolio">Portafolio</a>
+            <a href="index.html#contacto" class="btn-nav">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="reveal">
+            <span class="hero-label">Legal</span>
+            <h1>Aviso de <em>Privacidad</em></h1>
+            <p>Tu privacidad es importante para nosotros. Aquí explicamos cómo manejamos tu información personal.</p>
+        </div>
+    </header>
+
+    <!-- ===== CONTENIDO DE POLÍTICA ===== -->
+    <div class="policy-section">
+        <div class="policy-card reveal">
+
+            <h2>1. Identidad del Responsable</h2>
+            <p><strong>Tezkana Media</strong>, con domicilio en Coatepec, Veracruz, México, es responsable del
+                tratamiento de los datos personales que nos proporcione, de conformidad con la Ley Federal de Protección
+                de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento.</p>
+            <p><strong>Contacto del responsable:</strong><br>
+                Correo electrónico: <a href="mailto:contacto@tezkana.com">contacto@tezkana.com</a><br>
+                WhatsApp: <a href="https://wa.me/522205360119">+52 220 536 0119</a></p>
+
+            <h2>2. Datos Personales que Recopilamos</h2>
+            <p>Para las finalidades señaladas en el presente aviso de privacidad, podemos recabar los siguientes datos
+                personales:</p>
+            <ul>
+                <li>Nombre completo</li>
+                <li>Número de teléfono / WhatsApp</li>
+                <li>Correo electrónico</li>
+                <li>Nombre del negocio o marca</li>
+                <li>Información sobre los servicios que te interesan</li>
+                <li>Datos de navegación en nuestro sitio web (cookies, dirección IP, tipo de navegador)</li>
+            </ul>
+            <p>Le informamos que <strong>no recopilamos datos personales sensibles</strong> (origen racial, estado de
+                salud, creencias religiosas, datos biométricos, etc.).</p>
+
+            <h2>3. Finalidades del Tratamiento</h2>
+            <p>Los datos personales que recabamos serán utilizados para las siguientes finalidades
+                <strong>necesarias</strong>:</p>
+            <ul>
+                <li>Dar seguimiento a solicitudes de información, cotizaciones y asesorías</li>
+                <li>Prestar los servicios contratados (diseño web, gestión de redes sociales, marketing digital,
+                    automatización)</li>
+                <li>Comunicarnos contigo respecto al estatus de tu proyecto o servicio</li>
+                <li>Generar facturas y comprobantes fiscales cuando aplique</li>
+                <li>Cumplir con obligaciones legales y regulatorias</li>
+            </ul>
+            <p>De manera <strong>adicional</strong> y con tu consentimiento, utilizaremos tus datos para:</p>
+            <ul>
+                <li>Enviarte información promocional sobre nuevos servicios, paquetes y ofertas</li>
+                <li>Realizar encuestas de satisfacción para mejorar nuestros servicios</li>
+                <li>Invitarte a eventos, webinars o contenido exclusivo de Tezkana Media</li>
+            </ul>
+            <p>Si no deseas que tus datos sean tratados para finalidades adicionales, puedes comunicárnoslo a través de
+                los medios de contacto indicados en este aviso.</p>
+
+            <h2>4. Transferencia de Datos</h2>
+            <p>Tezkana Media <strong>no vende, alquila ni comparte</strong> tus datos personales con terceros para fines
+                distintos a los descritos en este aviso. Sin embargo, podemos compartir información con:</p>
+            <ul>
+                <li><strong>Proveedores de servicios tecnológicos</strong> (hosting, plataformas de correo, herramientas
+                    de automatización) estrictamente necesarios para la prestación de nuestros servicios</li>
+                <li><strong>Autoridades competentes</strong> cuando sea requerido por ley o por orden judicial</li>
+            </ul>
+            <p>En todos los casos, exigimos a nuestros proveedores el mismo nivel de protección de datos que nosotros
+                aplicamos.</p>
+
+            <h2>5. Uso de Cookies y Tecnologías de Rastreo</h2>
+            <p>Nuestro sitio web puede utilizar cookies y tecnologías similares para:</p>
+            <ul>
+                <li>Mejorar tu experiencia de navegación</li>
+                <li>Analizar el tráfico y comportamiento de usuarios de forma anónima</li>
+                <li>Optimizar el rendimiento del sitio</li>
+            </ul>
+            <p>Puedes deshabilitar las cookies desde la configuración de tu navegador. Ten en cuenta que esto podría
+                limitar algunas funcionalidades del sitio.</p>
+
+            <h2>6. Derechos ARCO</h2>
+            <p>Tienes derecho a <strong>Acceder, Rectificar, Cancelar u Oponerte</strong> al tratamiento de tus datos
+                personales (Derechos ARCO). También puedes <strong>revocar tu consentimiento</strong> en cualquier
+                momento.</p>
+            <p>Para ejercer cualquiera de estos derechos, envía una solicitud a <a
+                    href="mailto:contacto@tezkana.com">contacto@tezkana.com</a> con la siguiente información:</p>
+            <ul>
+                <li>Tu nombre completo e información de contacto</li>
+                <li>Una descripción clara del derecho que deseas ejercer</li>
+                <li>Cualquier documento que acredite tu identidad</li>
+            </ul>
+            <p>Responderemos a tu solicitud en un plazo máximo de <strong>20 días hábiles</strong> a partir de la
+                recepción.</p>
+
+            <h2>7. Medidas de Seguridad</h2>
+            <p>Tezkana Media implementa medidas de seguridad administrativas, técnicas y físicas para proteger tus datos
+                personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado. Entre
+                estas medidas se incluyen:</p>
+            <ul>
+                <li>Cifrado de datos en tránsito (SSL/TLS)</li>
+                <li>Acceso restringido a la información por personal autorizado</li>
+                <li>Respaldos periódicos de la información</li>
+                <li>Uso de proveedores tecnológicos con estándares de seguridad reconocidos</li>
+            </ul>
+
+            <h2>8. Menores de Edad</h2>
+            <p>Nuestros servicios están dirigidos a personas mayores de 18 años y a negocios. No recopilamos
+                intencionalmente datos de menores de edad. Si detectamos que hemos recabado información de un menor, la
+                eliminaremos de inmediato.</p>
+
+            <h2>9. Modificaciones al Aviso de Privacidad</h2>
+            <p>Tezkana Media se reserva el derecho de actualizar este aviso de privacidad en cualquier momento para
+                reflejar cambios en nuestras prácticas o en la legislación aplicable. Las modificaciones estarán
+                disponibles en esta misma página web.</p>
+            <p>Te recomendamos revisar periódicamente este documento para estar informado sobre cómo protegemos tu
+                información.</p>
+
+            <h2>10. Consentimiento</h2>
+            <p>Al proporcionar tus datos personales a través de nuestros formularios web, WhatsApp, correo electrónico u
+                otros medios de contacto, <strong>manifiestas tu consentimiento</strong> para que Tezkana Media trate
+                tus datos conforme a lo descrito en este aviso de privacidad.</p>
+
+            <div class="policy-meta">
+                <p><strong>Última actualización:</strong> 23 de febrero de 2026</p>
+                <p>Tezkana Media — Coatepec, Veracruz, México</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://facebook.com/tezkana" aria-label="Facebook" target="_blank" rel="noopener">📘</a>
+                <a href="https://instagram.com/tezkana" aria-label="Instagram" target="_blank" rel="noopener">📷</a>
+                <a href="https://wa.me/522205360119" aria-label="WhatsApp" target="_blank" rel="noopener">💬</a>
+            </div>
+            <p>&copy; 2026 Tezkana Media — Coatepec, Veracruz.</p>
+            <p class="footer-links">
+                <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== JS: Menú + Reveal ===== -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            menuToggle.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+
+    <!-- ===== STARFIELD CANVAS ===== -->
+    <script>
+        (function () {
+            const canvas = document.getElementById('nebula-bg');
+            const ctx = canvas.getContext('2d');
+            canvas.style.position = 'fixed'; canvas.style.top = '0'; canvas.style.left = '0';
+            canvas.style.width = '100%'; canvas.style.height = '100%'; canvas.style.zIndex = '-1'; canvas.style.pointerEvents = 'none';
+
+            let w, h, time = 0;
+            const BG = '#f0f4f8';
+            const starColors = [
+                { r: 20, g: 30, b: 80 }, { r: 15, g: 25, b: 100 }, { r: 30, g: 40, b: 90 },
+                { r: 50, g: 50, b: 55 }, { r: 60, g: 58, b: 65 }, { r: 45, g: 45, b: 50 },
+                { r: 60, g: 20, b: 90 }, { r: 75, g: 30, b: 110 }, { r: 50, g: 15, b: 80 },
+                { r: 160, g: 120, b: 40 }, { r: 180, g: 140, b: 50 }, { r: 140, g: 100, b: 30 },
+            ];
+            function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+            class Star {
+                constructor() { this.reset(true); }
+                reset(initial) {
+                    this.x = initial ? Math.random() * w : (Math.random() < 0.5 ? -5 : w + 5);
+                    this.y = Math.random() * h; this.baseR = 0.5 + Math.random() * 2;
+                    this.vx = 0.15 + Math.random() * 0.35; this.vy = -0.05 + Math.random() * 0.1;
+                    this.twinkleSpeed = 0.02 + Math.random() * 0.04; this.twinklePhase = Math.random() * Math.PI * 2;
+                    this.baseAlpha = 0.4 + Math.random() * 0.6;
+                    const c = pick(starColors); this.cr = c.r; this.cg = c.g; this.cb = c.b;
+                }
+                update() {
+                    this.x += this.vx; this.y += this.vy;
+                    if (this.x > w + 10) { this.x = -5; this.y = Math.random() * h; }
+                    if (this.x < -10) { this.x = w + 5; this.y = Math.random() * h; }
+                    if (this.y > h + 10 || this.y < -10) { this.y = this.y > h ? -5 : h + 5; }
+                }
+                draw(t) {
+                    const twinkle = 0.3 + (Math.sin(t * this.twinkleSpeed + this.twinklePhase) * 0.5 + 0.5) * 0.7;
+                    const alpha = this.baseAlpha * twinkle; const r = this.baseR * (0.7 + twinkle * 0.5);
+                    ctx.beginPath(); ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.cr},${this.cg},${this.cb},${alpha})`; ctx.fill();
+                }
+            }
+
+            let stars = [];
+            const STAR_COUNT = window.innerWidth <= 768 ? 150 : 450;
+            function init() { stars = []; for (let i = 0; i < STAR_COUNT; i++) stars.push(new Star()); }
+            function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; init(); }
+            window.addEventListener('resize', resize); resize();
+            function animate() { time++; ctx.fillStyle = BG; ctx.fillRect(0, 0, w, h); for (const s of stars) { s.update(); s.draw(time); } requestAnimationFrame(animate); }
+            animate();
+        })();
+    </script>
+
+</body>
+
+</html>
