@@ -84,7 +84,7 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-                    padding-top: 70px;
+            padding-top: 70px;
         }
 
         a {
@@ -872,68 +872,134 @@
         }
 
         /* ========================================
-           PORTFOLIO
+           PROCESS TIMELINE
            ======================================== */
-        .portfolio-grid {
+        .process-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .project {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            min-height: 240px;
+        .process-step {
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .process-step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: var(--radius);
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 20px rgba(198, 40, 40, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .process-step:hover .process-step-number {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(198, 40, 40, 0.4);
+        }
+
+        /* Connecting line between steps */
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(50% + 28px);
+            width: calc(100% - 56px);
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-light), rgba(198, 40, 40, 0.15));
+            z-index: 1;
+        }
+
+        .process-step h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+
+        .process-step p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           STATS COUNTERS
+           ======================================== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 80px;
+            padding: 48px 40px;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
         }
 
-        .project::before {
+        .stats-bar::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--accent));
-            opacity: 0;
-            transition: opacity var(--transition);
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--accent), var(--primary));
         }
 
-        .project:hover::before {
-            opacity: 1;
-        }
-
-        .project:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--glass-border-hover);
-        }
-
-        .project-content {
-            padding: 36px;
+        .stat-item {
             text-align: center;
+            position: relative;
         }
 
-        .project-content h3 {
-            color: var(--text);
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 10%;
+            height: 80%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.08), transparent);
         }
 
-        .project-content p {
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            font-weight: 600;
             color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* ========================================
@@ -1259,7 +1325,8 @@
             }
 
             .logo span {
-                display: none;
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
             }
 
             section {
@@ -1459,8 +1526,28 @@
                 grid-template-columns: 1fr;
             }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px 0;
+            }
+
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 32px 24px;
+                margin-top: 48px;
+                gap: 28px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-item:not(:last-child)::after {
+                display: none;
             }
 
             .contact-container {
@@ -1567,7 +1654,119 @@
                 height: 24px;
             }
         }
+
+        /* ========================================
+           CLOUDFLARE TURNSTILE
+           ======================================== */
+        .cf-turnstile {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .turnstile-error {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeInOverlay 0.3s ease;
+        }
+
+        .turnstile-error-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 32px 40px;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease;
+        }
+
+        .turnstile-error-box .error-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .turnstile-error-box h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+
+        .turnstile-error-box p {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .turnstile-error-box button {
+            background: linear-gradient(135deg, #C62828, #EF5350);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .turnstile-error-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(198, 40, 40, 0.3);
+        }
+
+        @keyframes fadeInOverlay {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
     </style>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '957748083581426');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=957748083581426&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -1803,33 +2002,55 @@
         </div>
     </section>
 
-    <!-- ===== PORTAFOLIO ===== -->
+    <!-- ===== NUESTRO MÉTODO ===== -->
     <section id="portafolio">
-        <span class="section-label reveal">Resultados Reales</span>
-        <h2 class="reveal">Casos de <span>Éxito</span></h2>
-        <p class="section-subtitle reveal">Negocios que confiaron en nosotros y ahora venden mientras duermen.</p>
+        <span class="section-label reveal">Cómo Trabajamos</span>
+        <h2 class="reveal">Nuestro <span>Método</span></h2>
+        <p class="section-subtitle reveal">Un sistema probado en más de 150 marcas para transformar tu presencia digital
+            en una máquina de ventas.</p>
 
-        <div class="portfolio-grid">
-            <div class="project reveal reveal-delay-1">
-                <div class="project-content">
-                    <h3>Inmobiliaria Xalapa</h3>
-                    <p>Automatización de citas y filtrado inteligente de prospectos por WhatsApp. 3x más citas
-                        agendadas.</p>
-                </div>
+        <div class="process-grid">
+            <div class="process-step reveal reveal-delay-1">
+                <div class="process-step-number">01</div>
+                <h4>Diagnóstico</h4>
+                <p>Analizamos tu negocio, competencia y mercado para encontrar oportunidades reales de crecimiento.</p>
             </div>
-
-            <div class="project reveal reveal-delay-2">
-                <div class="project-content">
-                    <h3>E-commerce Café</h3>
-                    <p>Recuperación de carritos abandonados con IA conversacional. +40% en tasa de conversión.</p>
-                </div>
+            <div class="process-step reveal reveal-delay-2">
+                <div class="process-step-number">02</div>
+                <h4>Estrategia</h4>
+                <p>Diseñamos un plan a la medida con objetivos claros, canales definidos y un calendario de ejecución.
+                </p>
             </div>
+            <div class="process-step reveal reveal-delay-3">
+                <div class="process-step-number">03</div>
+                <h4>Ejecución</h4>
+                <p>Implementamos cada pieza digital: sitio web, campañas, automatizaciones y contenido de alto impacto.
+                </p>
+            </div>
+            <div class="process-step reveal reveal-delay-4">
+                <div class="process-step-number">04</div>
+                <h4>Escalar</h4>
+                <p>Optimizamos con datos reales, escalamos lo que funciona y eliminamos lo que no genera resultados.</p>
+            </div>
+        </div>
 
-            <div class="project reveal reveal-delay-3">
-                <div class="project-content">
-                    <h3>Consultorio Dental</h3>
-                    <p>Sistema de agendamiento y recordatorios automáticos. Reducción del 80% en citas perdidas.</p>
-                </div>
+        <!-- Stats Counters -->
+        <div class="stats-bar reveal">
+            <div class="stat-item">
+                <div class="stat-number" data-target="150">0</div>
+                <div class="stat-label">Marcas Atendidas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Campañas Lanzadas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="2" data-suffix="M+">0</div>
+                <div class="stat-label">Alcance Generado</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="98" data-suffix="%">0</div>
+                <div class="stat-label">Clientes Satisfechos</div>
             </div>
         </div>
     </section>
@@ -1867,6 +2088,7 @@
                             <option value="otro">Otro</option>
                         </select>
                     </div>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACmn0Q69AV8AOZfy" data-theme="light"></div>
                     <button type="submit" class="btn-main" style="width:100%;"
                         aria-label="Enviar solicitud de asesoría">
                         Solicitar Asesoría Gratuita
@@ -1876,8 +2098,7 @@
 
             <div class="contact-info reveal reveal-delay-1">
                 <h3>¿Listo para escalar?</h3>
-                <p>Agenda una llamada de 15 minutos sin compromiso. Te mostraremos exactamente cómo podemos llevar tu
-                    negocio al siguiente nivel.</p>
+                <p>Platica con nuestro Agente integrado con IA 24/7 y te resolvemos tus dudas al momento.</p>
                 <a href="https://wa.me/5215655425153" target="_blank" class="btn-whatsapp"
                     aria-label="Enviar mensaje por WhatsApp">
                     💬 Escríbenos por WhatsApp
@@ -2000,10 +2221,58 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+        // --- Stats Counter Animation ---
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-number').forEach(counter => {
+                        const target = parseInt(counter.dataset.target);
+                        const suffix = counter.dataset.suffix || '+';
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+                        const update = () => {
+                            current += increment;
+                            if (current < target) {
+                                counter.textContent = Math.ceil(current).toLocaleString();
+                                requestAnimationFrame(update);
+                            } else {
+                                counter.textContent = target.toLocaleString() + suffix;
+                            }
+                        };
+                        update();
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) statsObserver.observe(statsBar);
+
         // --- Validación de formulario → WhatsApp ---
         const form = document.getElementById('contact-form');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            // --- Cloudflare Turnstile Validation ---
+            const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
+            if (!turnstileToken) {
+                // Show elegant error modal
+                const overlay = document.createElement('div');
+                overlay.className = 'turnstile-error';
+                overlay.innerHTML = `
+                    <div class="turnstile-error-box">
+                        <div class="error-icon">🛡️</div>
+                        <h4>Verificación requerida</h4>
+                        <p>Por favor, verifica que eres humano antes de continuar.</p>
+                        <button onclick="this.closest('.turnstile-error').remove()">Entendido</button>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+                overlay.addEventListener('click', (ev) => { if (ev.target === overlay) overlay.remove(); });
+                return;
+            }
 
             const nombre = document.getElementById('nombre').value;
             const whatsapp = document.getElementById('whatsapp').value;
@@ -2013,6 +2282,7 @@
                 `¡Hola! Soy ${nombre}.\n\nMe interesa el servicio de: ${servicio}\n\nMi WhatsApp es: ${whatsapp}`
             );
 
+            fbq('track', 'Lead');
             window.open(`https://wa.me/5215655425153?text=${mensaje}`, '_blank');
         });
 
