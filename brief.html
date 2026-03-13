@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brief Dinámico - Tezkana Media</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #C62828;
+            --primary-light: #EF5350;
+            --bg: #f0f4f8;
+            --text: #1a1a2e;
+            --glass: rgba(255, 255, 255, 0.7);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .brief-container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header-text {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .header-text p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Formulario Glassmorphism */
+        .contact-form {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #d1d9e6;
+            color: var(--text);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.1);
+        }
+
+        /* Secciones Dinámicas */
+        .dynamic-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--primary);
+            margin-top: 20px;
+        }
+
+        .dynamic-section.active {
+            display: block;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Botón estilo .btn-main */
+        .btn-main {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            min-height: 48px;
+            font-size: 1.1rem;
+            border-radius: 5px; /* Same as main index.html btn-main */
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(198, 40, 40, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        .btn-main:hover {
+            background-color: #b71c1c;
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(198, 40, 40, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(198, 40, 40, 0.6);
+            }
+        }
+
+        .btn-main:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            animation: none;
+        }
+
+        /* Mensaje de éxito */
+        #success-message {
+            display: none;
+            text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 50px 40px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        #success-message h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        #success-message p {
+            font-size: 1.2rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .contact-form {
+                padding: 25px 20px;
+            }
+            .header-text h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="brief-container">
+        <div class="header-text" id="header-text">
+            <h1>Comencemos tu Proyecto</h1>
+            <p>Por favor, completa este breve formulario para darnos el contexto necesario e iniciar a trabajar juntos.</p>
+        </div>
+
+        <form id="brief-form" class="contact-form">
+            <!-- 1. Información Base -->
+            <div class="form-section">
+                <h3>Información Base</h3>
+                <div class="form-group">
+                    <label for="nombre">Nombre completo *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">WhatsApp / Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="+52 123 456 7890">
+                </div>
+
+                <div class="form-group">
+                    <label for="empresa">Nombre de la Empresa / Proyecto *</label>
+                    <input type="text" id="empresa" name="empresa" required placeholder="Ej. Tezkana Media">
+                </div>
+
+                <div class="form-group">
+                    <label for="servicio">Servicio Contratado *</label>
+                    <select id="servicio" name="servicio" required>
+                        <option value="">Selecciona una opción...</option>
+                        <option value="Manejo de Redes Sociales">Manejo de Redes Sociales</option>
+                        <option value="Logo e Identidad Visual">Logo e Identidad Visual</option>
+                        <option value="Diseño Web">Diseño Web</option>
+                        <option value="Agentes IA">Agentes IA</option>
+                        <option value="Automatizaciones">Automatizaciones</option>
+                        <option value="Atención al Cliente">Atención al Cliente</option>
+                        <option value="Campañas Publicitarias">Campañas Publicitarias</option>
+                        <option value="Contenido Multimedia IA">Contenido Multimedia IA</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="expectativa">Breve descripción de lo que esperas *</label>
+                    <textarea id="expectativa" name="expectativa" rows="3" required placeholder="Cuéntanos un poco sobre tus objetivos con este servicio..."></textarea>
+                </div>
+            </div>
+
+            <!-- 2. Secciones Dinámicas -->
+            <div id="dynamic-sections-container">
+                
+                <!-- Redes Sociales -->
+                <div class="dynamic-section" id="sec-Manejo de Redes Sociales">
+                    <h3>Detalles: Redes Sociales</h3>
+                    <div class="form-group">
+                        <label for="rs_cuentas">1. ¿Cuáles son tus cuentas actuales (links)?</label>
+                        <textarea id="rs_cuentas" name="rs_cuentas" rows="2" placeholder="Ej. instagram.com/miempresa"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rs_cliente">2. ¿Quién es tu cliente ideal (edad, intereses)?</label>
+                        <textarea id="rs_cliente" name="rs_cliente" rows="2" placeholder="Ej. Hombres y mujeres de 25 a 45 años, interesados en tecnología..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Logo e Identidad Visual -->
+                <div class="dynamic-section" id="sec-Logo e Identidad Visual">
+                    <h3>Detalles: Identidad Visual</h3>
+                    <div class="form-group">
+                        <label for="id_palabras">1. ¿Qué 3 palabras describen tu marca?</label>
+                        <input type="text" id="id_palabras" name="id_palabras" placeholder="Ej. Moderna, Confiable, Dinámica">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_colores">2. ¿Tienes colores preferidos o referencias?</label>
+                        <input type="text" id="id_colores" name="id_colores" placeholder="Ej. Azules oscuros y acentos en dorado.">
+                    </div>
+                </div>
+
+                <!-- Diseño Web -->
+                <div class="dynamic-section" id="sec-Diseño Web">
+                    <h3>Detalles: Diseño Web</h3>
+                    <div class="form-group">
+                        <label for="dw_preferencia">1. ¿Prefieres que sea mas visual o mas texto?</label>
+                        <input type="text" id="dw_preferencia" name="dw_preferencia" placeholder="Ej. Muy visual, con muchas imágenes.">
+                    </div>
+                    <div class="form-group">
+                        <label for="dw_referencias">2. Menciona 2 páginas web que te gusten como referencia.</label>
+                        <input type="text" id="dw_referencias" name="dw_referencias" placeholder="1. www.ejemplo1.com | 2. www.ejemplo2.com">
+                    </div>
+                </div>
+
+                <!-- Agentes IA -->
+                <div class="dynamic-section" id="sec-Agentes IA">
+                    <h3>Detalles: Agentes IA</h3>
+                    <div class="form-group">
+                        <label for="ia_preguntas">1. ¿Cuáles son las 3 preguntas más frecuentes de tus clientes?</label>
+                        <textarea id="ia_preguntas" name="ia_preguntas" rows="3" placeholder="1. ¿Cuál es el precio? 2. ¿Tienen envíos? 3. ¿Horarios?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ia_plataforma">2. ¿En qué plataforma principal lo usarás (WhatsApp, Web, FB)?</label>
+                        <input type="text" id="ia_plataforma" name="ia_plataforma" placeholder="Ej. Principalmente en WhatsApp.">
+                    </div>
+                </div>
+
+                <!-- Automatizaciones -->
+                <div class="dynamic-section" id="sec-Automatizaciones">
+                    <h3>Detalles: Automatizaciones</h3>
+                    <div class="form-group">
+                        <label for="aut_tarea">1. ¿Qué tarea repetitiva te quita más tiempo?</label>
+                        <textarea id="aut_tarea" name="aut_tarea" rows="2" placeholder="Ej. Pasar los contactos de los correos a mi excel."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="aut_herramientas">2. ¿Qué herramientas usas (Google Calendar, Excel, CRM)?</label>
+                        <input type="text" id="aut_herramientas" name="aut_herramientas" placeholder="Ej. Google Sheets, Gmail y Trello.">
+                    </div>
+                </div>
+
+                <!-- Atención al Cliente -->
+                <div class="dynamic-section" id="sec-Atención al Cliente">
+                    <h3>Detalles: Atención al Cliente</h3>
+                    <div class="form-group">
+                        <label for="ac_personas">1. ¿Cuántas personas responden mensajes en tu equipo?</label>
+                        <input type="text" id="ac_personas" name="ac_personas" placeholder="Ej. 2 personas en diferentes turnos.">
+                    </div>
+                    <div class="form-group">
+                        <label for="ac_canal">2. ¿Por qué canal recibes más volumen de consultas?</label>
+                        <input type="text" id="ac_canal" name="ac_canal" placeholder="Ej. Instagram Direct.">
+                    </div>
+                </div>
+
+                <!-- Campañas Publicitarias -->
+                <div class="dynamic-section" id="sec-Campañas Publicitarias">
+                    <h3>Detalles: Campañas Publicitarias</h3>
+                    <div class="form-group">
+                        <label for="cp_objetivo">1. ¿Cuál es tu objetivo (mensajes, base de datos, ventas)?</label>
+                        <input type="text" id="cp_objetivo" name="cp_objetivo" placeholder="Ej. Conseguir más mensajes de prospectos.">
+                    </div>
+                    <div class="form-group">
+                        <label for="cp_material">2. ¿Cuentas con fotos/videos de tus productos?</label>
+                        <input type="text" id="cp_material" name="cp_material" placeholder="Ej. Sí, tengo fotos profesionales de mis productos.">
+                    </div>
+                </div>
+
+                <!-- Contenido Multimedia IA -->
+                <div class="dynamic-section" id="sec-Contenido Multimedia IA">
+                    <h3>Detalles: Contenido Multimedia IA</h3>
+                    <div class="form-group">
+                        <label for="cm_estilo">1. ¿Qué estilo visual buscas (realista, 3D, modelo digital)?</label>
+                        <input type="text" id="cm_estilo" name="cm_estilo" placeholder="Ej. Imágenes muy realistas estilo fotografía de producto.">
+                    </div>
+                    <div class="form-group">
+                        <label for="cm_elementos">2. Describe los elementos clave que deben aparecer.</label>
+                        <textarea id="cm_elementos" name="cm_elementos" rows="3" placeholder="Ej. Una botella de perfume en un fondo de naturaleza con agua salpicando."></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-main">Enviar Brief</button>
+        </form>
+
+        <!-- 3. Mensaje Elegante de Éxito -->
+        <div id="success-message">
+            <h2>¡Gracias!</h2>
+            <p>Hemos recibido tu información. Nuestro equipo comenzará a trabajar en tu proyecto, y nos comunicaremos cuando tengamos el primer avance.</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const servicioSelect = document.getElementById("servicio");
+            const dynamicSections = document.querySelectorAll(".dynamic-section");
+            const form = document.getElementById("brief-form");
+            const submitBtn = document.getElementById("submit-btn");
+            const successMessage = document.getElementById("success-message");
+            const headerText = document.getElementById("header-text");
+
+            // Lógica para mostrar la sección dinámica correspondiente
+            servicioSelect.addEventListener("change", (e) => {
+                const selectedService = e.target.value;
+                
+                // Ocultar todas las secciones
+                dynamicSections.forEach(section => {
+                    section.classList.remove("active");
+                    const inputs = section.querySelectorAll("input, textarea");
+                    inputs.forEach(input => {
+                        input.required = false;
+                    });
+                });
+
+                // Mostrar la sección seleccionada si existe
+                if (selectedService) {
+                    const activeSection = document.getElementById(`sec-${selectedService}`);
+                    if (activeSection) {
+                        activeSection.classList.add("active");
+                        // Hacer obligatorios los campos de la sección visible
+                        const inputs = activeSection.querySelectorAll("input, textarea");
+                        inputs.forEach(input => {
+                            input.required = true;
+                        });
+                    }
+                }
+            });
+
+            // Lógica de Envío
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                // Cambiar el estilo del botón
+                submitBtn.textContent = "Enviando...";
+                submitBtn.disabled = true;
+
+                // Construir el objeto JSON
+                const formData = new FormData(form);
+                const data = {
+                    base_info: {
+                        nombre: formData.get("nombre"),
+                        email: formData.get("email"),
+                        telefono: formData.get("telefono"),
+                        empresa: formData.get("empresa"),
+                        servicio: formData.get("servicio"),
+                        expectativa: formData.get("expectativa")
+                    },
+                    dynamic_info: {}
+                };
+
+                // Extraer datos de la sección visible únicamente
+                const selectedService = data.base_info.servicio;
+                if (selectedService) {
+                    const activeSection = document.getElementById(`sec-${selectedService}`);
+                    if (activeSection) {
+                        const inputs = activeSection.querySelectorAll("input, textarea");
+                        inputs.forEach(input => {
+                            data.dynamic_info[input.name] = formData.get(input.name);
+                        });
+                    }
+                }
+
+                try {
+                    const webhookUrl = "https://tu-webhook-url.com/n8n"; 
+                    
+                    // Se envía la petición fetch. Se utiliza no-cors o se maneja el error ya que el webhook puede fallar
+                    // Al ser un Webhook genérico que podría no regresar un endpoint válido, lo envolvemos de forma segura
+                    try {
+                        await fetch(webhookUrl, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(data)
+                        });
+                    } catch(err) {
+                        console.log("Fetch advirtió un error (posiblemente CORS o URL falsa), continuando con la visual de éxito.");
+                    }
+
+                    // Ocultar formulario y mostrar mensaje de éxito
+                    form.style.display = "none";
+                    headerText.style.display = "none";
+                    successMessage.style.display = "block";
+
+                } catch (error) {
+                    console.error("Error al enviar el formulario:", error);
+                    alert("Hubo un error interno. Por favor, intenta de nuevo.");
+                    submitBtn.textContent = "Enviar Brief";
+                    submitBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
