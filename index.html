@@ -558,8 +558,13 @@
         }
 
         @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .cap-item {
@@ -1802,6 +1807,129 @@
                 opacity: 1;
             }
         }
+
+        /* ========================================
+           SCROLL REVEAL TEXT INTERLUDE
+           ======================================== */
+        .scroll-text-interlude {
+            padding: 100px 5% 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-text-interlude::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(198, 40, 40, 0.4), transparent);
+        }
+
+        .scroll-text-phrase {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.25;
+            text-align: center;
+            max-width: 900px;
+            letter-spacing: -0.02em;
+        }
+
+        .scroll-text-phrase .word {
+            display: inline-block;
+            opacity: 0.08;
+            filter: blur(4px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        color 0.6s ease;
+            transform: translateY(8px);
+            color: rgba(212, 197, 169, 0.2);
+            margin: 0 0.18em;
+        }
+
+        .scroll-text-phrase .word.revealed {
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateY(0);
+        }
+
+        .scroll-text-phrase .word.revealed.accent {
+            color: #EF5350;
+            text-shadow: 0 0 30px rgba(198, 40, 40, 0.3);
+        }
+
+        .scroll-text-phrase .word.revealed:not(.accent) {
+            color: #D4C5A9;
+        }
+
+        /* --- Wipe Reveal Variant (post-hero) --- */
+        .scroll-text-phrase.wipe-reveal .word {
+            opacity: 1;
+            filter: none;
+            transform: none;
+            color: rgba(212, 197, 169, 0.08);
+            position: relative;
+            -webkit-text-stroke: 0.5px rgba(212, 197, 169, 0.12);
+            transition: color 0.5s ease, -webkit-text-stroke 0.5s ease;
+        }
+
+        .scroll-text-phrase.wipe-reveal .word::after {
+            content: attr(data-word);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #D4C5A9;
+            -webkit-text-stroke: 0;
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-text-phrase.wipe-reveal .word.revealed::after {
+            clip-path: inset(0 0 0 0);
+        }
+
+        .scroll-text-phrase.wipe-reveal .word.accent::after {
+            color: #EF5350;
+            text-shadow: 0 0 25px rgba(198, 40, 40, 0.25);
+        }
+
+        .scroll-text-accent-line {
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #C62828, #EF5350);
+            margin: 30px auto 0;
+            border-radius: 2px;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: opacity 0.8s ease 0.3s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+
+        .scroll-text-accent-line.revealed {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        @media (max-width: 768px) {
+            .scroll-text-interlude {
+                padding: 70px 6% 80px;
+            }
+
+            .scroll-text-phrase {
+                font-size: clamp(1.6rem, 7vw, 2.4rem);
+            }
+
+            .scroll-text-interlude::before {
+                height: 40px;
+            }
+        }
     </style>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <!-- Meta Pixel Code -->
@@ -1890,42 +2018,61 @@
                 <!-- Set 1 -->
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
                     </div>
                     <span>Identidad Visual</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
                     </div>
                     <span>Sitios Web</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
                     </div>
                     <span>Marketing Digital</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
                     </div>
                     <span>Contenido & IA</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
                     </div>
                     <span>Automatización</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
                     </div>
                     <span>Chatbots IA</span>
                 </div>
@@ -1934,42 +2081,61 @@
                 <!-- Set 2 (duplicado para loop infinito) -->
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
                     </div>
                     <span>Identidad Visual</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
                     </div>
                     <span>Sitios Web</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                        </svg>
                     </div>
                     <span>Marketing Digital</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
                     </div>
                     <span>Contenido & IA</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
                     </div>
                     <span>Automatización</span>
                 </div>
                 <span class="cap-separator">•</span>
                 <div class="cap-item">
                     <div class="cap-icon">
-                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
                     </div>
                     <span>Chatbots IA</span>
                 </div>
@@ -1977,6 +2143,13 @@
             </div>
         </div>
     </header>
+
+    <!-- ===== SCROLL REVEAL TEXT — POST HERO ===== -->
+    <div class="scroll-text-interlude" id="scroll-text-hero">
+        <div class="scroll-text-phrase wipe-reveal" data-accent="estrategia,venda.">
+            No necesitas más seguidores — necesitas una estrategia que venda.
+        </div>
+    </div>
 
     <!-- ===== SERVICIOS — Bento Box ===== -->
     <section id="servicios">
@@ -2099,8 +2272,9 @@
                         </svg>
                     </div>
                     <h3>Creación de Contenido Multimedia con IA</h3>
-                    <p>Video, renders 3D y contenido visual de alto impacto potenciado por Inteligencia Artificial.</p>
-                    <a href="contenido-multimedia.html" class="btn-nav">Ver Paquetes</a>
+                    < <p>Video, renders 3D y contenido visual de alto impacto potenciado por Inteligencia Artificial.
+                        </p>
+                        <a href="contenido-multimedia.html" class="btn-nav">Ver Paquetes</a>
                 </div>
 
             </div>
@@ -2123,6 +2297,13 @@
             <div class="carousel-dots" id="carousel-dots"></div>
         </div>
     </section>
+
+    <!-- ===== SCROLL REVEAL TEXT INTERLUDE ===== -->
+    <div class="scroll-text-interlude" id="scroll-text-interlude">
+        <div class="scroll-text-phrase" data-accent="historia,inolvidable.">
+            Cada marca tiene una historia — nosotros la hacemos inolvidable.
+        </div>
+    </div>
 
     <!-- ===== NUESTRO MÉTODO ===== -->
     <section id="portafolio">
@@ -2494,6 +2675,71 @@
             }
             window.addEventListener('resize', handleResize);
             handleResize();
+        })();
+
+        // --- Scroll Reveal Text Interlude (generic, supports multiple) ---
+        (function initScrollTextAll() {
+            document.querySelectorAll('.scroll-text-interlude').forEach(container => {
+                const phrase = container.querySelector('.scroll-text-phrase');
+                if (!phrase) return;
+
+                const text = phrase.textContent.trim();
+                const accentAttr = phrase.getAttribute('data-accent') || 'historia,inolvidable.';
+                const accentWords = accentAttr.split(',').map(s => s.trim());
+                phrase.innerHTML = '';
+
+                text.split(/\s+/).forEach(w => {
+                    const span = document.createElement('span');
+                    span.className = 'word' + (accentWords.some(a => w.toLowerCase().includes(a.toLowerCase())) ? ' accent' : '');
+                    span.textContent = w;
+                    span.setAttribute('data-word', w);
+                    phrase.appendChild(span);
+                });
+
+                const line = document.createElement('span');
+                line.className = 'scroll-text-accent-line';
+                phrase.appendChild(line);
+
+                const wordEls = phrase.querySelectorAll('.word');
+
+                function handleScroll() {
+                    const rect = phrase.getBoundingClientRect();
+                    const windowH = window.innerHeight;
+                    const start = windowH * 0.9;
+                    const end = windowH * 0.25;
+                    const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
+
+                    const totalWords = wordEls.length;
+                    const revealCount = Math.floor(progress * (totalWords + 2));
+
+                    wordEls.forEach((word, i) => {
+                        if (i < revealCount) {
+                            word.classList.add('revealed');
+                        } else {
+                            word.classList.remove('revealed');
+                        }
+                    });
+
+                    if (revealCount >= totalWords) {
+                        line.classList.add('revealed');
+                    } else {
+                        line.classList.remove('revealed');
+                    }
+                }
+
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            window.addEventListener('scroll', handleScroll, { passive: true });
+                            handleScroll();
+                        } else {
+                            window.removeEventListener('scroll', handleScroll);
+                        }
+                    });
+                }, { rootMargin: '200px 0px' });
+
+                io.observe(container);
+            });
         })();
     </script>
 
