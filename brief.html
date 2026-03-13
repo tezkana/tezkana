@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,8 +131,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Botón estilo .btn-main */
@@ -141,7 +149,8 @@
             padding: 15px 30px;
             min-height: 48px;
             font-size: 1.1rem;
-            border-radius: 5px; /* Same as main index.html btn-main */
+            border-radius: 5px;
+            /* Same as main index.html btn-main */
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 0 15px rgba(198, 40, 40, 0.3);
@@ -159,11 +168,14 @@
             transform: translateY(-2px);
             color: white;
         }
-        
+
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 15px rgba(198, 40, 40, 0.3);
             }
+
             50% {
                 box-shadow: 0 0 30px rgba(198, 40, 40, 0.6);
             }
@@ -207,18 +219,21 @@
             .contact-form {
                 padding: 25px 20px;
             }
+
             .header-text h1 {
                 font-size: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="brief-container">
         <div class="header-text" id="header-text">
             <h1>Comencemos tu Proyecto</h1>
-            <p>Por favor, completa este breve formulario para darnos el contexto necesario e iniciar a trabajar juntos.</p>
+            <p>Por favor, completa este breve formulario para darnos el contexto necesario e iniciar a trabajar juntos.
+            </p>
         </div>
 
         <form id="brief-form" class="contact-form">
@@ -229,7 +244,7 @@
                     <label for="nombre">Nombre completo *</label>
                     <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="email">Correo electrónico *</label>
                     <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
@@ -262,23 +277,26 @@
 
                 <div class="form-group">
                     <label for="expectativa">Breve descripción de lo que esperas *</label>
-                    <textarea id="expectativa" name="expectativa" rows="3" required placeholder="Cuéntanos un poco sobre tus objetivos con este servicio..."></textarea>
+                    <textarea id="expectativa" name="expectativa" rows="3" required
+                        placeholder="Cuéntanos un poco sobre tus objetivos con este servicio..."></textarea>
                 </div>
             </div>
 
             <!-- 2. Secciones Dinámicas -->
             <div id="dynamic-sections-container">
-                
+
                 <!-- Redes Sociales -->
                 <div class="dynamic-section" id="sec-Manejo de Redes Sociales">
                     <h3>Detalles: Redes Sociales</h3>
                     <div class="form-group">
                         <label for="rs_cuentas">1. ¿Cuáles son tus cuentas actuales (links)?</label>
-                        <textarea id="rs_cuentas" name="rs_cuentas" rows="2" placeholder="Ej. instagram.com/miempresa"></textarea>
+                        <textarea id="rs_cuentas" name="rs_cuentas" rows="2"
+                            placeholder="Ej. instagram.com/miempresa"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="rs_cliente">2. ¿Quién es tu cliente ideal (edad, intereses)?</label>
-                        <textarea id="rs_cliente" name="rs_cliente" rows="2" placeholder="Ej. Hombres y mujeres de 25 a 45 años, interesados en tecnología..."></textarea>
+                        <textarea id="rs_cliente" name="rs_cliente" rows="2"
+                            placeholder="Ej. Hombres y mujeres de 25 a 45 años, interesados en tecnología..."></textarea>
                     </div>
                 </div>
 
@@ -287,11 +305,13 @@
                     <h3>Detalles: Identidad Visual</h3>
                     <div class="form-group">
                         <label for="id_palabras">1. ¿Qué 3 palabras describen tu marca?</label>
-                        <input type="text" id="id_palabras" name="id_palabras" placeholder="Ej. Moderna, Confiable, Dinámica">
+                        <input type="text" id="id_palabras" name="id_palabras"
+                            placeholder="Ej. Moderna, Confiable, Dinámica">
                     </div>
                     <div class="form-group">
                         <label for="id_colores">2. ¿Tienes colores preferidos o referencias?</label>
-                        <input type="text" id="id_colores" name="id_colores" placeholder="Ej. Azules oscuros y acentos en dorado.">
+                        <input type="text" id="id_colores" name="id_colores"
+                            placeholder="Ej. Azules oscuros y acentos en dorado.">
                     </div>
                 </div>
 
@@ -300,11 +320,13 @@
                     <h3>Detalles: Diseño Web</h3>
                     <div class="form-group">
                         <label for="dw_preferencia">1. ¿Prefieres que sea mas visual o mas texto?</label>
-                        <input type="text" id="dw_preferencia" name="dw_preferencia" placeholder="Ej. Muy visual, con muchas imágenes.">
+                        <input type="text" id="dw_preferencia" name="dw_preferencia"
+                            placeholder="Ej. Muy visual, con muchas imágenes.">
                     </div>
                     <div class="form-group">
                         <label for="dw_referencias">2. Menciona 2 páginas web que te gusten como referencia.</label>
-                        <input type="text" id="dw_referencias" name="dw_referencias" placeholder="1. www.ejemplo1.com | 2. www.ejemplo2.com">
+                        <input type="text" id="dw_referencias" name="dw_referencias"
+                            placeholder="1. www.ejemplo1.com | 2. www.ejemplo2.com">
                     </div>
                 </div>
 
@@ -313,11 +335,14 @@
                     <h3>Detalles: Agentes IA</h3>
                     <div class="form-group">
                         <label for="ia_preguntas">1. ¿Cuáles son las 3 preguntas más frecuentes de tus clientes?</label>
-                        <textarea id="ia_preguntas" name="ia_preguntas" rows="3" placeholder="1. ¿Cuál es el precio? 2. ¿Tienen envíos? 3. ¿Horarios?"></textarea>
+                        <textarea id="ia_preguntas" name="ia_preguntas" rows="3"
+                            placeholder="1. ¿Cuál es el precio? 2. ¿Tienen envíos? 3. ¿Horarios?"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="ia_plataforma">2. ¿En qué plataforma principal lo usarás (WhatsApp, Web, FB)?</label>
-                        <input type="text" id="ia_plataforma" name="ia_plataforma" placeholder="Ej. Principalmente en WhatsApp.">
+                        <label for="ia_plataforma">2. ¿En qué plataforma principal lo usarás (WhatsApp, Web,
+                            FB)?</label>
+                        <input type="text" id="ia_plataforma" name="ia_plataforma"
+                            placeholder="Ej. Principalmente en WhatsApp.">
                     </div>
                 </div>
 
@@ -326,11 +351,13 @@
                     <h3>Detalles: Automatizaciones</h3>
                     <div class="form-group">
                         <label for="aut_tarea">1. ¿Qué tarea repetitiva te quita más tiempo?</label>
-                        <textarea id="aut_tarea" name="aut_tarea" rows="2" placeholder="Ej. Pasar los contactos de los correos a mi excel."></textarea>
+                        <textarea id="aut_tarea" name="aut_tarea" rows="2"
+                            placeholder="Ej. Pasar los contactos de los correos a mi excel."></textarea>
                     </div>
                     <div class="form-group">
                         <label for="aut_herramientas">2. ¿Qué herramientas usas (Google Calendar, Excel, CRM)?</label>
-                        <input type="text" id="aut_herramientas" name="aut_herramientas" placeholder="Ej. Google Sheets, Gmail y Trello.">
+                        <input type="text" id="aut_herramientas" name="aut_herramientas"
+                            placeholder="Ej. Google Sheets, Gmail y Trello.">
                     </div>
                 </div>
 
@@ -339,7 +366,8 @@
                     <h3>Detalles: Atención al Cliente</h3>
                     <div class="form-group">
                         <label for="ac_personas">1. ¿Cuántas personas responden mensajes en tu equipo?</label>
-                        <input type="text" id="ac_personas" name="ac_personas" placeholder="Ej. 2 personas en diferentes turnos.">
+                        <input type="text" id="ac_personas" name="ac_personas"
+                            placeholder="Ej. 2 personas en diferentes turnos.">
                     </div>
                     <div class="form-group">
                         <label for="ac_canal">2. ¿Por qué canal recibes más volumen de consultas?</label>
@@ -352,11 +380,13 @@
                     <h3>Detalles: Campañas Publicitarias</h3>
                     <div class="form-group">
                         <label for="cp_objetivo">1. ¿Cuál es tu objetivo (mensajes, base de datos, ventas)?</label>
-                        <input type="text" id="cp_objetivo" name="cp_objetivo" placeholder="Ej. Conseguir más mensajes de prospectos.">
+                        <input type="text" id="cp_objetivo" name="cp_objetivo"
+                            placeholder="Ej. Conseguir más mensajes de prospectos.">
                     </div>
                     <div class="form-group">
                         <label for="cp_material">2. ¿Cuentas con fotos/videos de tus productos?</label>
-                        <input type="text" id="cp_material" name="cp_material" placeholder="Ej. Sí, tengo fotos profesionales de mis productos.">
+                        <input type="text" id="cp_material" name="cp_material"
+                            placeholder="Ej. Sí, tengo fotos profesionales de mis productos.">
                     </div>
                 </div>
 
@@ -365,11 +395,13 @@
                     <h3>Detalles: Contenido Multimedia IA</h3>
                     <div class="form-group">
                         <label for="cm_estilo">1. ¿Qué estilo visual buscas (realista, 3D, modelo digital)?</label>
-                        <input type="text" id="cm_estilo" name="cm_estilo" placeholder="Ej. Imágenes muy realistas estilo fotografía de producto.">
+                        <input type="text" id="cm_estilo" name="cm_estilo"
+                            placeholder="Ej. Imágenes muy realistas estilo fotografía de producto.">
                     </div>
                     <div class="form-group">
                         <label for="cm_elementos">2. Describe los elementos clave que deben aparecer.</label>
-                        <textarea id="cm_elementos" name="cm_elementos" rows="3" placeholder="Ej. Una botella de perfume en un fondo de naturaleza con agua salpicando."></textarea>
+                        <textarea id="cm_elementos" name="cm_elementos" rows="3"
+                            placeholder="Ej. Una botella de perfume en un fondo de naturaleza con agua salpicando."></textarea>
                     </div>
                 </div>
 
@@ -381,7 +413,8 @@
         <!-- 3. Mensaje Elegante de Éxito -->
         <div id="success-message">
             <h2>¡Gracias!</h2>
-            <p>Hemos recibido tu información. Nuestro equipo comenzará a trabajar en tu proyecto, y nos comunicaremos cuando tengamos el primer avance.</p>
+            <p>Hemos recibido tu información. Nuestro equipo comenzará a trabajar en tu proyecto, y nos comunicaremos
+                cuando tengamos el primer avance.</p>
         </div>
 
     </div>
@@ -398,7 +431,7 @@
             // Lógica para mostrar la sección dinámica correspondiente
             servicioSelect.addEventListener("change", (e) => {
                 const selectedService = e.target.value;
-                
+
                 // Ocultar todas las secciones
                 dynamicSections.forEach(section => {
                     section.classList.remove("active");
@@ -457,8 +490,8 @@
                 }
 
                 try {
-                    const webhookUrl = "https://tu-webhook-url.com/n8n"; 
-                    
+                    const webhookUrl = "https://n8n.18.119.197.239.nip.io/webhook/recibir-brief";
+
                     // Se envía la petición fetch. Se utiliza no-cors o se maneja el error ya que el webhook puede fallar
                     // Al ser un Webhook genérico que podría no regresar un endpoint válido, lo envolvemos de forma segura
                     try {
@@ -469,7 +502,7 @@
                             },
                             body: JSON.stringify(data)
                         });
-                    } catch(err) {
+                    } catch (err) {
                         console.log("Fetch advirtió un error (posiblemente CORS o URL falsa), continuando con la visual de éxito.");
                     }
 
@@ -488,4 +521,5 @@
         });
     </script>
 </body>
+
 </html>
