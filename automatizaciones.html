@@ -1510,40 +1510,76 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Validación y envío a WhatsApp
+        // --- Validación y envío de formulario ---
         const form = document.getElementById('contact-form');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-            // --- Cloudflare Turnstile Validation ---
-            const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
-            if (!turnstileToken) {
-                // Show elegant error modal
-                const overlay = document.createElement('div');
-                overlay.className = 'turnstile-error';
-                overlay.innerHTML = `
-                    <div class="turnstile-error-box">
-                        <div class="error-icon">🛡️</div>
-                        <h4>Verificación requerida</h4>
-                        <p>Por favor, verifica que eres humano antes de continuar.</p>
-                        <button onclick="this.closest('.turnstile-error').remove()">Entendido</button>
+                // --- Cloudflare Turnstile Validation ---
+                const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
+                if (!turnstileToken) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'turnstile-error';
+                    overlay.innerHTML = `
+                        <div class="turnstile-error-box">
+                            <div class="error-icon">🛡️</div>
+                            <h4>Verificación requerida</h4>
+                            <p>Por favor, verifica que eres humano antes de continuar.</p>
+                            <button onclick="this.closest('.turnstile-error').remove()">Entendido</button>
+                        </div>
+                    `;
+                    document.body.appendChild(overlay);
+                    overlay.addEventListener('click', (ev) => { if (ev.target === overlay) overlay.remove(); });
+                    return;
+                }
+
+                const nombre = document.getElementById('nombre')?.value || '';
+                const whatsapp = document.getElementById('whatsapp')?.value || '';
+                const email = document.getElementById('email')?.value || '';
+                const paquete = document.getElementById('paquete')?.value || '';
+                const servicio = "Automatizaciones Estratégicas";
+
+                const payload = {
+                    nombre: nombre,
+                    whatsapp: whatsapp,
+                    email: email,
+                    servicio: servicio,
+                    paquete: paquete
+                };
+
+                fetch('https://n8n.tezkana.com/webhook/942fb558-7860-45a6-85aa-d19bd00ee5b6', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                })
+                    .then(response => console.log('Lead enviado a n8n exitosamente'))
+                    .catch(error => console.error('Error al enviar lead a n8n:', error));
+
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead');
+                }
+
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 48px 24px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; border: 1px solid rgba(76, 175, 80, 0.25); box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);">
+                        <div style="width: 72px; height: 72px; background: rgba(76, 175, 80, 0.12); color: #2e7d32; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 38px; margin: 0 auto 24px auto;">
+                            ✓
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: 12px; font-family: inherit; line-height: 1.3;">
+                            ¡Información enviada con éxito!
+                        </h3>
+                        <p style="font-size: 1rem; color: #64748b; line-height: 1.6; max-width: 420px; margin: 0 auto 24px auto;">
+                            Muchas gracias por escribirnos${nombre ? `, <strong>${nombre}</strong>` : ''}. Hemos recibido tus datos correctamente y un asesor de nuestro equipo se comunicará contigo en breve.
+                        </p>
+                        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; color: #2e7d32; background: rgba(76, 175, 80, 0.08); padding: 8px 18px; border-radius: 30px;">
+                            <span>✨ Tezkana</span>
+                        </div>
                     </div>
                 `;
-                document.body.appendChild(overlay);
-                overlay.addEventListener('click', (ev) => { if (ev.target === overlay) overlay.remove(); });
-                return;
-            }
-            const nombre = document.getElementById('nombre').value;
-            const whatsapp = document.getElementById('whatsapp').value;
-            const paquete = document.getElementById('paquete').value;
-            const servicio = "Automatizaciones Estratégicas";
-
-            const mensaje = encodeURIComponent(
-                `¡Hola! Soy ${nombre}.\n\nMe interesa el servicio de: ${servicio}\nFlujo de interés: ${paquete}\n\nMi WhatsApp es: ${whatsapp}`
-            );
-            fbq('track', 'Lead');
-            window.open(`https://wa.me/5212281547891?text=${mensaje}`, '_blank');
-        });
+            });
+        }
 
         // Background animado
         (function () {
